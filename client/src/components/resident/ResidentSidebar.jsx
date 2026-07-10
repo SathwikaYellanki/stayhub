@@ -17,37 +17,70 @@ function ResidentSidebar() {
 
         <ul className="nav flex-column">
 
-          <li className="nav-item mb-3">
-            <Link className="nav-link text-white" to="/resident-dashboard">
-  🏠 Dashboard
-</Link>
+          <li className="nav-item mb-2">
+            <Link
+              className="nav-link text-white"
+              to="/resident-dashboard"
+            >
+              🏠 Dashboard
+            </Link>
+          </li>
 
-<Link className="nav-link text-white" to="/resident-complaints">
-  🛠 Complaints
-</Link>
+          <li className="nav-item mb-2">
+            <Link
+              className="nav-link text-white"
+              to="/resident-complaints"
+            >
+              🛠 Complaints
+            </Link>
+          </li>
 
-<Link className="nav-link text-white" to="/resident-notices">
-  📢 Notices
-</Link>
+          <li className="nav-item mb-2">
+            <Link
+              className="nav-link text-white"
+              to="/resident-notices"
+            >
+              📢 Notices
+            </Link>
+          </li>
 
-<Link className="nav-link text-white" to="/resident-payments">
-  💰 Rent Payment
-</Link>
+          <li className="nav-item mb-2">
+            <Link
+              className="nav-link text-white"
+              to="/resident-payments"
+            >
+              💰 Rent Payment
+            </Link>
+          </li>
 
-<Link className="nav-link text-white" to="/resident-profile">
-  👤 Profile
-</Link>
+          <li className="nav-item mb-2">
+            <Link
+              className="nav-link text-white"
+              to="/resident-profile"
+            >
+              👤 Profile
+            </Link>
+          </li>
+
+          <li className="nav-item mb-2">
+            <Link
+              className="nav-link text-white"
+              to="/resident-notifications"
+            >
+              🔔 Notifications
+            </Link>
           </li>
 
           <li className="nav-item mt-5">
             <button
               className="btn btn-danger w-100"
               onClick={() => {
-                localStorage.clear();
+                localStorage.removeItem("resident");
+                localStorage.removeItem("token");
                 window.location.href = "/login";
               }}
             >
-              Logout
+              🚪 Logout
             </button>
           </li>
 

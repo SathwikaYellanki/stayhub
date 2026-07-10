@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../../services/api";
-
+import AdminSidebar from "../../components/admin/AdminSidebar";
+import AdminTopbar from "../../components/admin/AdminTopbar";
 function AdminRequests() {
   const [requests, setRequests] = useState([]);
 
@@ -28,58 +29,91 @@ function AdminRequests() {
   };
 
   return (
-    <div className="container mt-4">
-      <h2>Registration Requests</h2>
+  <div className="d-flex">
 
-      <table className="table table-bordered table-hover mt-3">
-        <thead className="table-dark">
-          <tr>
-            <th>Name</th>
-            <th>Flat</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Status</th>
-            <th width="180">Actions</th>
-          </tr>
-        </thead>
+    <AdminSidebar />
 
-        <tbody>
-          {requests.length === 0 ? (
+    <div className="flex-grow-1">
+
+      <AdminTopbar />
+
+      <div className="container mt-4">
+
+        <h2>Registration Requests</h2>
+
+        <table className="table table-bordered table-hover mt-3">
+
+          <thead className="table-dark">
+
             <tr>
-              <td colSpan="6" className="text-center">
-                No Pending Requests
-              </td>
+              <th>Name</th>
+              <th>Flat</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Status</th>
+              <th width="180">Actions</th>
             </tr>
-          ) : (
-            requests.map((user) => (
-              <tr key={user._id}>
-                <td>{user.name}</td>
-                <td>{user.flatNo}</td>
-                <td>{user.email}</td>
-                <td>{user.phone}</td>
-                <td>{user.status}</td>
-                <td>
-                  <button
-                    className="btn btn-success btn-sm me-2"
-                    onClick={() => approve(user._id)}
-                  >
-                    Approve
-                  </button>
 
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => reject(user._id)}
-                  >
-                    Reject
-                  </button>
+          </thead>
+
+          <tbody>
+
+            {requests.length === 0 ? (
+
+              <tr>
+
+                <td colSpan="6" className="text-center">
+                  No Pending Requests
                 </td>
+
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+
+            ) : (
+
+              requests.map((user) => (
+
+                <tr key={user._id}>
+
+                  <td>{user.name}</td>
+                  <td>{user.flatNo}</td>
+                  <td>{user.email}</td>
+                  <td>{user.phone}</td>
+                  <td>{user.status}</td>
+
+                  <td>
+
+                    <button
+                      className="btn btn-success btn-sm me-2"
+                      onClick={() => approve(user._id)}
+                    >
+                      Approve
+                    </button>
+
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => reject(user._id)}
+                    >
+                      Reject
+                    </button>
+
+                  </td>
+
+                </tr>
+
+              ))
+
+            )}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
     </div>
-  );
+
+  </div>
+);
 }
 
 export default AdminRequests;

@@ -342,7 +342,84 @@ const residentLogin = async (req, res) => {
     });
   }
 };
+// Get Resident Profile
+const getResidentProfile = async (req, res) => {
+  try {
 
+    const resident = await User.findById(req.params.id).select("-password");
+
+    if (!resident) {
+      return res.status(404).json({
+        message: "Resident not found",
+      });
+    }
+
+    res.json(resident);
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      message: "Server Error",
+    });
+
+  }
+};
+
+// Change Password
+const changePassword = async (req, res) => {
+
+  try {
+
+    const {
+      residentId,
+      currentPassword,
+      newPassword,
+    } = req.body;
+
+    const resident = await User.findById(residentId);
+
+    if (!resident) {
+      return res.status(404).json({
+        message: "Resident not found",
+      });
+    }
+
+    const isMatch = await bcrypt.compare(
+      currentPassword,
+      resident.password
+    );
+
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "Current password is incorrect.",
+      });
+    }
+
+    resident.password = await bcrypt.hash(
+      newPassword,
+      10
+    );
+
+    await resident.save();
+
+    res.json({
+      success: true,
+      message: "Password updated successfully.",
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      message: "Server Error",
+    });
+
+  }
+
+};
 module.exports = {
   registerRequest,
   getPendingRequests,
@@ -353,4 +430,6 @@ module.exports = {
   createPassword,
   checkStatus,
   residentLogin,
+  getResidentProfile,
+  changePassword,
 };
