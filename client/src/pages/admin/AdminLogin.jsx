@@ -83,12 +83,16 @@ function AdminLogin() {
 
         </div>
 
-        <button
-          type="submit"
-          className="btn btn-danger w-100"
-        >
-          Login
-        </button>
+    <button
+  type="submit"
+  className="btn w-100 text-white"
+  style={{
+    backgroundColor: "#198754",
+    borderColor: "#198754",
+  }}
+>
+  Login
+</button>
 
       </form>
 

@@ -5,10 +5,13 @@ function ResidentSidebar() {
     <div
       className="bg-dark text-white"
       style={{
-        width: "250px",
-        minHeight: "100vh",
-      }}
+  backgroundColor: "#198754",
+  color: "white",
+  width: "250px",
+  minHeight: "100vh",
+}}
     >
+      <div className="sidebar-custom text-white"></div>
       <div className="p-4">
 
         <h3 className="mb-4">

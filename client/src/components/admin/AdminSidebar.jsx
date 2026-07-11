@@ -4,11 +4,14 @@ function Sidebar() {
   return (
     <div
       className="bg-dark text-white p-3"
-      style={{
-        width: "250px",
-        minHeight: "100vh",
-      }}
+    style={{
+  backgroundColor: "#198754",
+  color: "white",
+  width: "250px",
+  minHeight: "100vh",
+}}
     >
+      <div className="sidebar-custom text-white"></div>
       <h3 className="text-center mb-4">
         🏢 StayHub
       </h3>

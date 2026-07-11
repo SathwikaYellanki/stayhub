@@ -1,0 +1,15 @@
+:root{
+    --primary:#198754;
+}
+
+.navbar-custom{
+    background:var(--primary);
+}
+
+.footer-custom{
+    background:var(--primary);
+}
+
+.sidebar-custom{
+    background:var(--primary);
+}

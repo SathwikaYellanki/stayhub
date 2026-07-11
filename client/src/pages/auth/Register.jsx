@@ -135,13 +135,12 @@ function Register() {
           />
         </div>
 
-        <button
-          type="submit"
-          className="btn btn-primary w-100"
-        >
-          Request Registration
-        </button>
-
+<button
+  type="submit"
+  className="btn btn-success w-100"
+>
+  Request Registration
+</button>
       </form>
 
       <hr className="my-4" />
