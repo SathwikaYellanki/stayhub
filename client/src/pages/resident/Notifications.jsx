@@ -26,6 +26,9 @@ function Notifications() {
       const paymentRes = await API.get(
         `/payments/resident/${resident.id}`
       );
+      const residentRes = await API.get(
+        `/auth/resident/${resident.id}`
+      );
 
       let list = [];
 
@@ -71,7 +74,16 @@ function Notifications() {
         }
 
       });
+      // Payment Reminder from User collection
+if (residentRes.data.paymentReminder) {
 
+  list.unshift({
+    type: "paymentReminder",
+    message: "🔔 Please pay your maintenance amount.",
+    date: new Date(),
+  });
+
+}
       list.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       setNotifications(list);

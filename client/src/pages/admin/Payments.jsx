@@ -21,7 +21,11 @@ function Payments() {
   }, []);
 
   const verifyPayment = async (id) => {
+
+    if (!id) return;
+
     try {
+
       await API.put(`/payments/verify/${id}`);
 
       alert("Payment Verified");
@@ -29,11 +33,17 @@ function Payments() {
       fetchPayments();
 
     } catch (error) {
+
       console.log(error);
+
     }
+
   };
 
   const sendReminder = async (id) => {
+
+    if (!id) return;
+
     try {
 
       await API.put(`/payments/reminder/${id}`);
@@ -47,6 +57,7 @@ function Payments() {
       console.log(error);
 
     }
+
   };
 
   return (
@@ -89,13 +100,13 @@ function Payments() {
 
             <tbody>
 
-              {payments.map((payment) => (
+              {payments.map((payment, index) => (
 
-                <tr key={payment._id}>
+                <tr key={index}>
 
-                  <td>{payment.resident?.name}</td>
+                  <td>{payment.name}</td>
 
-                  <td>{payment.resident?.flatNo}</td>
+                  <td>{payment.flatNo}</td>
 
                   <td>{payment.month}</td>
 
@@ -107,7 +118,9 @@ function Payments() {
                       className={`badge ${
                         payment.status === "Verified"
                           ? "bg-success"
-                          : "bg-warning"
+                          : payment.status === "Pending"
+                          ? "bg-warning"
+                          : "bg-secondary"
                       }`}
                     >
                       {payment.status}
@@ -119,7 +132,10 @@ function Payments() {
 
                     <button
                       className="btn btn-success btn-sm"
-                      disabled={payment.status === "Verified"}
+                      disabled={
+                        payment.status === "Verified" ||
+                        payment.status === "Not Paid"
+                      }
                       onClick={() =>
                         verifyPayment(payment._id)
                       }
@@ -132,12 +148,11 @@ function Payments() {
                   <td>
 
                     <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() =>
-                        sendReminder(payment._id)
-                      }
-                    >
-                      Reminder
+                        className="btn btn-danger btn-sm"
+                        disabled={payment.status !== "Not Paid"}
+                        onClick={() => sendReminder(payment.residentId)}
+                      >
+                        Reminder
                     </button>
 
                   </td>

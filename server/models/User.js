@@ -47,6 +47,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    paymentReminder: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

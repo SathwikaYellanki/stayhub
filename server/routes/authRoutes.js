@@ -14,6 +14,7 @@ const {
   residentLogin,
   getResidentProfile,
   changePassword,
+  getResident,
 } = require("../controllers/authController");
 
 // Resident Registration
@@ -33,7 +34,7 @@ router.post("/create-password", createPassword);
 router.post("/check-status", checkStatus);
 router.post("/login", residentLogin);
 router.get("/profile/:id", getResidentProfile);
-
+router.get("/resident/:id", getResident);
 router.put("/change-password", changePassword);
 
 module.exports = router;

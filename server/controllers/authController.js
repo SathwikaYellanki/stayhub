@@ -420,6 +420,30 @@ const changePassword = async (req, res) => {
   }
 
 };
+
+const getResident = async (req, res) => {
+  try {
+
+    const resident = await User.findById(req.params.id);
+
+    if (!resident) {
+      return res.status(404).json({
+        message: "Resident not found",
+      });
+    }
+
+    res.json(resident);
+
+  } catch (error) {
+
+    console.log(error);
+
+    res.status(500).json({
+      message: "Server Error",
+    });
+
+  }
+};
 module.exports = {
   registerRequest,
   getPendingRequests,
@@ -432,4 +456,5 @@ module.exports = {
   residentLogin,
   getResidentProfile,
   changePassword,
+  getResident,
 };
