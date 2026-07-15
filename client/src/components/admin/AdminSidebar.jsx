@@ -1,80 +1,66 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function Sidebar() {
+function AdminSidebar() {
   return (
     <div
-      className="bg-dark text-white p-3"
-    style={{
-  backgroundColor: "#198754",
-  color: "white",
-  width: "250px",
-  minHeight: "100vh",
-}}
+      className="bg-dark text-white"
+      style={{
+        width: "250px",
+        minHeight: "100vh",
+      }}
     >
-      <div className="sidebar-custom text-white"></div>
-      <h3 className="text-center mb-4">
-        🏢 StayHub
-      </h3>
+      <div className="p-4">
 
-      <ul className="nav flex-column">
+        <h3 className="mb-4">
+          🏢 StayHub
+        </h3>
 
-        <li className="nav-item mb-2">
-          <NavLink
-            to="/admin-dashboard"
-            className="nav-link text-white"
-          >
-            📊 Dashboard
-          </NavLink>
-        </li>
+        <ul className="nav flex-column">
 
-        <li className="nav-item mb-2">
-          <NavLink
-            to="/admin-requests"
-            className="nav-link text-white"
-          >
-            👥 Registration Requests
-          </NavLink>
-        </li>
+          <li className="nav-item mb-3">
+            <Link className="nav-link text-white" to="/admin-dashboard">
+              📊 Dashboard
+            </Link>
 
-        <li className="nav-item mb-2">
-          <NavLink
-            to="/admin/residents"
-            className="nav-link text-white"
-          >
-            🏠 Residents
-          </NavLink>
-        </li>
+            <Link className="nav-link text-white" to="/admin-requests">
+              👥 Registration Requests
+            </Link>
 
-        <li className="nav-item mb-2">
-          <NavLink
-            to="/admin/complaints"
-            className="nav-link text-white"
-          >
-            📝 Complaints
-          </NavLink>
-        </li>
+            <Link className="nav-link text-white" to="/admin-residents">
+              🏠 Residents
+            </Link>
 
-        <li className="nav-item mb-2">
-          <NavLink
-            to="/admin/payments"
-            className="nav-link text-white"
-          >
-            💳 Payments
-          </NavLink>
-        </li>
+            <Link className="nav-link text-white" to="/admin-complaints">
+              📝 Complaints
+            </Link>
 
-        <li className="nav-item mb-2">
-          <NavLink
-            to="/admin/notices"
-            className="nav-link text-white"
-          >
-            📢 Notices
-          </NavLink>
-        </li>
+            <Link className="nav-link text-white" to="/admin-payments">
+              💳 Payments
+            </Link>
 
-      </ul>
+            <Link className="nav-link text-white" to="/admin-notices">
+              📢 Notices
+            </Link>
+          </li>
+
+          {/* Logout Button */}
+          <li className="nav-item mt-5">
+            <button
+              className="btn btn-danger w-100"
+              onClick={() => {
+                localStorage.removeItem("admin");
+                localStorage.removeItem("token");
+                window.location.href = "/admin-login";
+              }}
+            >
+              🚪 Logout
+            </button>
+          </li>
+
+        </ul>
+      </div>
     </div>
   );
 }
 
-export default Sidebar;
+export default AdminSidebar;
